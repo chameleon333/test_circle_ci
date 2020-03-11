@@ -2,6 +2,9 @@ version: 2
 jobs:
     build:
         docker:
-            - image: circleci/golang:1.11.2
+            - image: circleci/golang:1.8
+        working_directory: /go/src/github.com/chameleon333/test_circle_ci
         steps:
-            - run: echo "hello world"
+            - checkout
+            - run: go get -v -t -d ./...
+            - run: go test -v ./...
